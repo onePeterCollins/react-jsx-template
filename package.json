@@ -1,0 +1,31 @@
+{
+  "name": "react-jsx-template",
+  "version": "1.0.0",
+  "description": "React component for style encapsulation. Create scoped styles within your components, also compatible with material-design styled components. Works with the Shadow DOM API and essentially renders the content of the component within the Shadow DOM.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "react-jsx-template",
+    "scoped styles",
+    "CSS",
+    "JSX",
+    "styled components",
+    "shadow DOM",
+    "encapsulation",
+    "template",
+    "shadow",
+    "root"
+  ],
+  "author": "Peter Collins",
+  "license": "ISC",
+  "devDependencies": {
+    "material-components-web": "^6.0.0",
+    "react": "^16.13.1"
+  },
+  "peerDependencies": {
+    "material-components-web": "^6.0.0",
+    "react": "^16.13.1"
+  }
+}
