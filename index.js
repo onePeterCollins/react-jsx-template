@@ -1,1 +1,4 @@
-var React = require('react');
+
+var Template = require('./src/$Template.js')
+
+module.exports = Template;

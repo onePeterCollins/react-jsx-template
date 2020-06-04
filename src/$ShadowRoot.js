@@ -1,8 +1,9 @@
-import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
-import {StylesProvider, jssPreset} from '@material-ui/styles';
-import {create} from 'jss';
-import FN from '../plugins/Functions'
+var React = require('react')
+var Component = React.Component;
+var ReactDOM = require('react-dom');
+var StylesProvider = require('@material-ui/styles').StylesProvider;
+var jssPreset = require('@material-ui/styles').jssPreset;
+var create = require('jss');
 
 
 // This component provides encapsulation for components by mounting them in the shadow DOM of a host element.
@@ -24,7 +25,7 @@ import FN from '../plugins/Functions'
 // All styles within the <Template> tag will be scoped to that component.
 // Global and 3rd party stylesheets are also imported into the shadow DOM, but scoped styles take the highest precedence.
 
-export default function shadowRoot(renderTarget) {
+module.exports = function shadowRoot(renderTarget) {
 
     if (!renderTarget.shadowRoot) {
         renderTarget.attachShadow({mode: 'open'})
@@ -34,7 +35,6 @@ export default function shadowRoot(renderTarget) {
         constructor(props) {
             super(props)
             this.host = renderTarget
-            this._setState = FN.setState.bind(this) // bind 'this' to 'setState' function
             this.shadow = renderTarget.shadowRoot
             this.state = {
                 jss: create({...jssPreset(), insertionPoint: renderTarget.shadowRoot.appendChild(document.createElement('div'))})
@@ -45,7 +45,7 @@ export default function shadowRoot(renderTarget) {
         componentDidMount() {
             (async function teleport(ROOT) {
                 await renderTarget.children
-                ROOT._setState('jss', create({...jssPreset(), insertionPoint: ROOT.shadow.appendChild(document.createElement('div'))}))
+                ROOT.setState({jss: create({...jssPreset(), insertionPoint: ROOT.shadow.appendChild(document.createElement('div'))})})
 
                 let topStyle = ROOT.shadow.querySelector('style'),
                 globalStyles, clonedStyle
@@ -80,12 +80,10 @@ export default function shadowRoot(renderTarget) {
         }
 
         render() {
-            return ReactDOM.createPortal(
-                <StylesProvider jss={this.state.jss}>
-                    {this.props.children}
-                </StylesProvider>,
+            let props = {jss: this.state.jss}
 
-                this.shadow
+            return ReactDOM.createPortal(
+                React.cloneElement(StylesProvider, props, this.props.children), this.shadow
             )
         }
     }

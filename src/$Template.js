@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import shadowRoot  from './$ShadowRoot';
-import FN from '../plugins/Functions' // Abstracted reusable functions
+var React = require('react');
+var Component = React.Component;
+var shadowRoot = require('./$ShadowRoot');
 
 
 // This component provides encapsulation for components by mounting them in the shadow DOM of a host element.
@@ -11,11 +11,9 @@ import FN from '../plugins/Functions' // Abstracted reusable functions
 // styling the root element must be done using the :host selector within the components stylesheet.
 // styling rules for 3rd party styled components will no longer apply
 
-export default class Template extends Component {
+module.exports = class Template extends Component {
     constructor(props) {
         super(props)
-        
-        this.id = FN.generateId(3, 4, '-', 'template-')
         this.root = this.props.root
         this.ref = React.createRef()
         this.state = {
@@ -48,7 +46,8 @@ export default class Template extends Component {
 
         this.setContent = function(ROOT) {
             if(ROOT.state.isLive && ROOT.root) {
-                return <ROOT.state.shadow children={ROOT.props.children} />
+                let props = {children: ROOT.props.children}
+                return React.cloneElement(ROOT.state.shadow, props)
             } else if (ROOT.state.isLive && !ROOT.root) {
                 let newArray = [],
                 adjacentChildren = ROOT.props.children.map(
@@ -56,13 +55,17 @@ export default class Template extends Component {
                         if (index > 0) newArray.push(item)
                         return newArray
                     }
-                )
+                ),
+                props = {},
+                children = [
+                    React.cloneElement(ROOT.props.children[0].props.children),
+                    React.cloneElement(adjacentChildren)
+                ]
 
-                return(
-                    <ROOT.state.shadow>
-                        {ROOT.props.children[0].props.children}
-                        {adjacentChildren}
-                    </ROOT.state.shadow>
+                return React.cloneElement(
+                    ROOT.state.shadow,
+                    props,
+                    [...children]
                 )
             } else {
                 return null
@@ -112,18 +115,15 @@ export default class Template extends Component {
 
     render() {
         let renderValue = (function(ROOT) {
+            let props = {ref: ROOT.ref, children: ROOT.state.content}
+
             if (ROOT.root) {
-                return <ROOT.root id={ROOT.id} ref={ROOT.ref} children={ROOT.state.content} />
+                return React.cloneElement(ROOT.root, props)
             } else if (!ROOT.root && ROOT.props.children[0]) {
-                let props = {id: ROOT.id, ref: ROOT.ref, children: ROOT.state.content}
-                return (React.cloneElement(ROOT.props.children[0], props))
+                return React.cloneElement(ROOT.props.children[0], props)
             }
         })(this)
 
-        return (
-            <React.Fragment>
-                {renderValue}
-            </React.Fragment>
-        )
+        return React.Fragment(renderValue)
     }
 }
