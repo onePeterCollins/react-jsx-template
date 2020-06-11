@@ -28,6 +28,6 @@
   },
   "files": [
     "index.js",
-    "./src/$ShadowRoot.js"
+    "$ShadowRoot.js"
   ]
 }

@@ -1,6 +1,6 @@
 const React = require('react');
 const Component = React.Component;
-const shadowRoot = require('./src/$ShadowRoot.js');
+const shadowRoot = require('./$ShadowRoot.js');
 
 
 // This component provides encapsulation for components by mounting them in the shadow DOM of a host element.
