@@ -1,5 +1,3 @@
-var Template = require('./dist/Template.js');
-
-console.log(`loading react-jsx-template`)
+const Template = require('./dist/Template.js');
 
 module.exports = Template;

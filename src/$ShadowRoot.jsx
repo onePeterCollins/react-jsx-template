@@ -1,8 +1,3 @@
-// import React, {Component} from 'react';
-// import ReactDOM from 'react-dom';
-// import {StylesProvider, jssPreset} from '@material-ui/styles';
-// import {create} from 'jss';
-
 const React = require('react');
 const Component = React.Component;
 const ReactDOM = require('react-dom');

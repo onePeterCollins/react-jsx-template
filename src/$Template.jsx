@@ -1,6 +1,3 @@
-// import React, {Component} from 'react';
-// import shadowRoot  from './$ShadowRoot.jsx';
-
 const React = require('react');
 const Component = React.Component;
 const shadowRoot = require('./$ShadowRoot.jsx');
