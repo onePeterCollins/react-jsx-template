@@ -22,9 +22,6 @@
   "author": "Peter Collins",
   "license": "ISC",
   "devDependencies": {
-    "@material-ui/core": "^4.10.1",
-    "babel-loader": "^8.1.0",
-    "jss": "^10.3.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "webpack": "^4.43.0",
