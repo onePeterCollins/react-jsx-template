@@ -1,6 +1,9 @@
-var React = require('react');
-var Component = React.Component;
-var shadowRoot = require('./$ShadowRoot');
+// import React, {Component} from 'react';
+// import shadowRoot  from './$ShadowRoot.jsx';
+
+const React = require('react');
+const Component = React.Component;
+const shadowRoot = require('./$ShadowRoot.jsx');
 
 
 // This component provides encapsulation for components by mounting them in the shadow DOM of a host element.
@@ -14,6 +17,7 @@ var shadowRoot = require('./$ShadowRoot');
 module.exports = class Template extends Component {
     constructor(props) {
         super(props)
+        
         this.root = this.props.root
         this.ref = React.createRef()
         this.state = {
@@ -46,8 +50,7 @@ module.exports = class Template extends Component {
 
         this.setContent = function(ROOT) {
             if(ROOT.state.isLive && ROOT.root) {
-                let props = {children: ROOT.props.children}
-                return React.cloneElement(ROOT.state.shadow, props)
+                return <ROOT.state.shadow children={ROOT.props.children} />
             } else if (ROOT.state.isLive && !ROOT.root) {
                 let newArray = [],
                 adjacentChildren = ROOT.props.children.map(
@@ -55,17 +58,13 @@ module.exports = class Template extends Component {
                         if (index > 0) newArray.push(item)
                         return newArray
                     }
-                ),
-                props = {},
-                children = [
-                    React.cloneElement(ROOT.props.children[0].props.children),
-                    React.cloneElement(adjacentChildren)
-                ]
+                )
 
-                return React.cloneElement(
-                    ROOT.state.shadow,
-                    props,
-                    [...children]
+                return(
+                    <ROOT.state.shadow>
+                        {ROOT.props.children[0].props.children}
+                        {adjacentChildren}
+                    </ROOT.state.shadow>
                 )
             } else {
                 return null
@@ -115,15 +114,18 @@ module.exports = class Template extends Component {
 
     render() {
         let renderValue = (function(ROOT) {
-            let props = {ref: ROOT.ref, children: ROOT.state.content}
-
             if (ROOT.root) {
-                return React.cloneElement(ROOT.root, props)
+                return <ROOT.root ref={ROOT.ref} children={ROOT.state.content} />
             } else if (!ROOT.root && ROOT.props.children[0]) {
-                return React.cloneElement(ROOT.props.children[0], props)
+                let props = {ref: ROOT.ref, children: ROOT.state.content}
+                return (React.cloneElement(ROOT.props.children[0], props))
             }
         })(this)
 
-        return React.Fragment(renderValue)
+        return (
+            <React.Fragment>
+                {renderValue}
+            </React.Fragment>
+        )
     }
 }

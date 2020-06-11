@@ -1,10 +1,14 @@
-var React = require('react')
-var Component = React.Component;
-var ReactDOM = require('react-dom');
-var StylesProvider = require('@material-ui/styles').StylesProvider;
-var jssPreset = require('@material-ui/styles').jssPreset;
-var create = require('jss');
+// import React, {Component} from 'react';
+// import ReactDOM from 'react-dom';
+// import {StylesProvider, jssPreset} from '@material-ui/styles';
+// import {create} from 'jss';
 
+const React = require('react');
+const Component = React.Component;
+const ReactDOM = require('react-dom');
+const StylesProvider = require('@material-ui/styles/StylesProvider')
+const jssPreset = require('@material-ui/styles/jssPreset')
+const create = require('jss').create
 
 // This component provides encapsulation for components by mounting them in the shadow DOM of a host element.
 
@@ -80,10 +84,12 @@ module.exports = function shadowRoot(renderTarget) {
         }
 
         render() {
-            let props = {jss: this.state.jss}
-
             return ReactDOM.createPortal(
-                React.cloneElement(StylesProvider, props, this.props.children), this.shadow
+                <StylesProvider jss={this.state.jss}>
+                    {this.props.children}
+                </StylesProvider>,
+
+                this.shadow
             )
         }
     }
