@@ -20,9 +20,6 @@
   ],
   "author": "Peter Collins",
   "license": "ISC",
-  "devDependencies": {
-    "webpack-cli": "^3.3.11"
-  },
   "peerDependencies": {
     "@material-ui/core": "^4.10.1",
     "jss": "^10.3.0",
