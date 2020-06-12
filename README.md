@@ -1,14 +1,17 @@
 # react-jsx-template
 
-React component for style encapsulation. It helps you create components with scoped styles, also compatible with material UI styled components. Works with the Shadow DOM API and essentially renders the content of the component within the Shadow DOM of the 'root' element. It works a bit like the <template> tag in Vue.js development, except that in this case it contains everything in the component, including the <style> tag.
+<h3>
+    <span color='#61DBFB'>React</span> <span> + </span> <span color='#141A46'>react-jsx-template</span>
+    <span> = </span> <span color='#61DBFB'>modularity</span> <span> + </span> <span color='#61DBFB'>encapsulation</span>
+</h3>
+
+<p>React component for style encapsulation. It helps you create components with scoped styles, also compatible with material UI styled components. It works with the Shadow DOM API and essentially renders the content of the component within the Shadow DOM of a 'root' element. It works a bit like the &lt;template&gt; tag in Vue.js development, except that in this case it contains everything in the component, including the &lt;style&gt; tag.</p>
 
 # installation
 
-If you have [node] (https://nodejs.org/en/download) installed, and the [npm] (https://nodejs.org/en/download) command line tool
+<p>If you have <a href='https://nodejs.org/en/download'>node</a> installed on your machine <br/> run;</p>
 
-run; 
-
-```bash
+```sh
 npm install react-jsx-template
 ```
 

@@ -22,12 +22,14 @@
   "license": "ISC",
   "peerDependencies": {
     "@material-ui/core": "^4.10.1",
-    "jss": "^10.3.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react": "^16.13.1"
   },
   "files": [
     "index.js",
     "$ShadowRoot.js"
-  ]
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "jss": "^10.3.0"
+  }
 }
