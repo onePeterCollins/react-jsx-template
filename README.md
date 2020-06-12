@@ -9,7 +9,7 @@
 
 # installation
 
-<p>If you have <a href='https://nodejs.org/en/download'>node</a> installed on your machine <br/> run;</p>
+<p>If you have <a href='https://nodejs.org/en/download'>node</a> installed on your machine run;</p>
 
 ```sh
 npm install react-jsx-template
@@ -17,45 +17,29 @@ npm install react-jsx-template
 
 # peer dependencies
 
-This package requires that you have the following packages installed in your project folder;
+<p>This package requires that you have the following packages installed in your project folder;</p>
 
-* Material UI components for reusable styled UI components. More information [here] (https://)
+* Material UI components for reusable styled UI components. More information <a>here</a>
 
   to install run;
 
-  ```bash
+  ```sh
   npm install @material-ui/core
   ``` 
-
-* JSS for injecting javascript-generated styling. More information [here] (https://)
-
-  to install run;
-
-  ```bash
-  npm install jss
-  ```
 
 * React library. It comes by default if you scaffold your project on CRA. More information [here] (https://)
 
   to install run;
 
-  ```bash
+  ```sh
   npm install react
-  ```
-
-* React-dom. This package manages rendering react element to the DOM and is installed by default in CRA scaffold. More information [here] (https://)
-
-  to install run;
-
-  ```bash
-  npm install react-dom
   ```
 
 # Usage
 
-Now we're all setup, to use the react-jsx-template import it at the top of your script.
+<p>Now we're all setup, to use the react-jsx-template import it at the top of your script.</p>
 
-```javascript
+```js
 import Template from 'react-jsx-template'
 ```
 
@@ -142,7 +126,7 @@ render() {
 }
 ```
 
-This component also allows you to use javascript variables as CSS selectors or values in your component styling, take a look;
+<!-- This component also allows you to use javascript variables as CSS selectors or values in your component styling, take a look;
 
 ```javascript
 // JS variable as CSS selector
@@ -169,5 +153,5 @@ render() {
     return (
 
     )
-}
+} -->
 ```
