@@ -1,8 +1,8 @@
 const React = require('react');
 const Component = React.Component;
 const ReactDOM = require('react-dom');
-const StylesProvider = require('@material-ui/styles/StylesProvider')
-const jssPreset = require('@material-ui/styles/jssPreset')
+const StylesProvider = require('@material-ui/styles/').StylesProvider
+const jssPreset = require('@material-ui/styles/').jssPreset
 const create = require('jss').create
 
 // This component provides encapsulation for components by mounting them in the shadow DOM of a host element.
