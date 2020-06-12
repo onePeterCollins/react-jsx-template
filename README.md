@@ -1,9 +1,11 @@
 # react-jsx-template
 
-<h3>
+<!-- <h3>
     <span color='#61DBFB'>React</span> <span> + </span> <span color='#141A46'>react-jsx-template</span>
     <span> = </span> <span color='#61DBFB'>modularity</span> <span> + </span> <span color='#61DBFB'>encapsulation</span>
-</h3>
+</h3> -->
+
+<p>react + react-jsx-template = <a href='https://en.wikipedia.org/wiki/Modular_programming'>modularity</a> and <a href='https://en.wikipedia.org/wiki/Encapsulation_(computer_programming)'>encapsulation</a></p>
 
 <p>React component for style encapsulation. It helps you create components with scoped styles, also compatible with material UI styled components. It works with the Shadow DOM API and essentially renders the content of the component within the Shadow DOM of a 'root' element. It works a bit like the &lt;template&gt; tag in Vue.js development, except that in this case it contains everything in the component, including the &lt;style&gt; tag.</p>
 
