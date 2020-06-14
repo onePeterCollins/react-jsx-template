@@ -26,9 +26,8 @@
   },
   "files": [
     "index.js",
-    "$ShadowRoot.js"
+    "ShadowRoot.js"
   ],
-  "dependencies": {},
   "devDependencies": {
     "jss": "^10.3.0"
   }
