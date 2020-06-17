@@ -41,15 +41,15 @@ npm install react-jsx-template
 # Usage
 
 <h4>Quick links</h4>
-<a href='#rjt-markup-structure'>Structuring your markup</a>
-<a href='#rjt-custom-setup'>Custom setup</a>
-<a href='#rjt-root-styling'>Styling the root element</a>
-<a href='#rjt-variable-selectors'>Variable CSS selectors</a>
-<a href='#rjt-variable-properties'>Variable CSS properties</a>
-<a href='#rjt-variable-values'>Variable CSS values</a>
-<a href='#rjt-variable-properties'>Variable CSS properties</a>
-<a href='#rjt-pseudo-styling'>Dynamic pseudo-element styling</a>
-<a href='#rjt-dynamic-media-queries'>Dynamic media queries</a>
+<a href='#rjt-markup-structure'> | Structuring your markup</a>
+<a href='#rjt-custom-setup'> | Custom setup</a>
+<a href='#rjt-root-styling'> | Styling the root element</a>
+<a href='#rjt-variable-selectors'> | Variable CSS selectors</a>
+<a href='#rjt-variable-properties'> | Variable CSS properties</a>
+<a href='#rjt-variable-values'> | Variable CSS values</a>
+<a href='#rjt-variable-properties'> | Variable CSS properties</a>
+<a href='#rjt-pseudo-styling'> | Dynamic pseudo-element styling</a>
+<a href='#rjt-dynamic-media-queries'> | Dynamic media queries</a>
 
 
 <p>Now we're all setup, to use the 'react-jsx-template' import it at the top of your script.</p>
