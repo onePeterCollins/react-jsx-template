@@ -1,6 +1,6 @@
 {
   "name": "react-jsx-template",
-  "version": "1.0.11",
+  "version": "1.0.12-0",
   "description": "React component for style encapsulation. Create scoped styles within your components, also compatible with material-design styled components. Works with the Shadow DOM API and essentially renders the content of the component within the Shadow DOM.",
   "main": "index.js",
   "scripts": {
