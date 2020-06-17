@@ -3,9 +3,12 @@
 
 <p>react + react-jsx-template = <a href='https://en.wikipedia.org/wiki/Modular_programming' target='_blank'>modularity</a> and <a href='https://en.wikipedia.org/wiki/Encapsulation_(computer_programming)'  target='_blank'>encapsulation</a></p>
 
-<p>React component for style encapsulation. It helps you create components with scoped styles, also compatible with material-UI styled components. It works with the <a href='https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM' target='_blank'>Shadow DOM API</a> and essentially renders the content of the component within the Shadow DOM of a 'root' element. It works a bit like the &lt;template&gt; tag in Vue.js, except that in this case it contains everything in the component, including the &lt;style&gt; tag.</p>
+<p>React component for style encapsulation. It helps you create components with scoped styles, also compatible with material-UI components. We would agree that writing CSS for React would be a lot easier if we didn't have to worry about conflicting style rules, this component does exactly that.</p>
 
-<p> If you're a Vue.js developer transitioning to React.js you will love this powerful yet simple component.</p>
+<p> If you're a Vue.js developer transitioning to React.js you will love this powerful yet simple component. It works like the &lt;template&gt; tag in Vue.js, but in this case you write both your markup and stylesheet inside it.</p>
+
+<p>You might want to read more about how this component achieves encapsulation, or move on you're fine without this paragraph. `react-jsx-template` works with the <a href='https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM' target='_blank'>Shadow DOM API</a> and essentially renders the content of your component within the Shadow DOM of a 'root' element. Ok that's enough, proceed to see how all this might be useful to you.</p>
+
 
 # installation
 
@@ -43,7 +46,40 @@ npm install react-jsx-template
 import {Template} from 'react-jsx-template'
 ```
 
-<p>Then you can use it in the render function of your component;</p>
+<p>Then you can use it in the render function of your component by structuring it this way;</p>
+
+```js
+// component showing how to structure your markup
+render() {
+    return (
+        <Template>
+
+            {/* the root element can be any element or component except <style> */}
+            <root>
+
+                {/* this is where the content of your component goes */}
+                <p>Hello world!</p>
+
+                <p>
+                    Everything within the 'root' element will be regarded as the 
+                    content of this component.
+                </p>
+            </root>
+
+            <style>
+            {`
+                selector {property: value;}
+            `}
+            </style>
+        </Template>
+    )
+}
+```
+
+<p>Essentially, our &lt;template&gt; should contain 2 child elements;</p>
+*   <span>The root element, where we write our markup. </span>
+*   <span>A &lt;style&gt; element to contain our CSS rules. </span>
+
 
 ```js
 // component with scoped styles, using material-ui component library
@@ -51,6 +87,8 @@ render() {
     return (
         <Template>
             <div> {/* this div is the root element */}
+
+                {/* this is the content */}
                 <p>Red colored content, try it</p>
             </div>
 
@@ -63,9 +101,10 @@ render() {
     )
 }
 ```
-<p> The &lt;Template&gt; tag does not get mounted to the DOM, but the root element gets mounted to the DOM and hosts a shadow root to contain all the other elements of our component. &lt;style&gt; tags enclosed in &lt;Template&gt; tags will also be rendered in the shadow DOM, and their styles will be applied exclusively to elements within the shadow DOM.</p>
 
-<p> You can use material-ui styled components, the inline styles will be preserved by default. To use a different component library, you need to setup a custom 'StylesProvider' the setup is explained below. </p>
+<p> The &lt;Template&gt; tag does not get mounted to the DOM, so if you check your dev tools you won't see it. However, the root element gets mounted to the DOM and contains all the other elements of our component.</p>
+
+<p> You can use material-ui styled components by default, the inline styles will be preserved. To use a different component library, you need to setup a custom 'StylesProvider' the setup is explained below. </p>
 
 <p> Create a template.js file in your working directory, and write the following code in it; 
 
@@ -103,22 +142,22 @@ render() {
                 <Item className='red box' height='100%'></Item>
                 <Item className='yellow box' height='100%'></Item>
             </Item>
+
+            <style> {/* user defined style rules override component library's inline styles */}
+            {`
+                .red {background: #911f1e;}
+
+                .yellow {background: #fcdfa3;}
+
+                .box {height: 50%;}
+            `}
+            </style>
         </Template>
-
-        <style> {/* user defined style rules override component library's inline styles */}
-        {`
-            .red {background: #911f1e;}
-
-            .yellow {background: #fcdfa3;}
-
-            .box {height: 50%;}
-        `}
-        </style>
     )
 }
 ```
 
-<p> Styling the root element of your component can be done using the `:host` selector. The root element will host the internal shadow root of this component, therefore the `:host` selector can be used to target the host element from within the shadow root.</p>
+<p> Styling the root element of your component can be done using the `:host` selector. This is because encapsulation is done using the shadow DOM API under the hood. You don't need prior knowledge of that to use this component, but you can check that out later if you want.</p>
 
 ```javascript
 // styling the root element
@@ -217,7 +256,7 @@ render() {
 }
 ```
 
-<p>This makes controling the CSS styles of pseudo elements a breeze, see an example;</p>
+<p>This makes controlling the CSS styles of pseudo-elements a breeze, see an example;</p>
 
 ```javascript
 // JS variable as CSS selector
@@ -228,7 +267,8 @@ render() {
     return (
         <Template>
             <div>
-                <p className={size}>The :before pseudo element of this paragraph will always maintain its styling no matter what the className changes to.</p>
+                <p className={size}>The :before pseudo-element of this paragraph has persistent and variable
+                style rules.</p>
             </div>
 
             <style>
@@ -236,15 +276,14 @@ render() {
                 .${size}:before {
                     content: '';
                     position: absolute;
-                    width: 10px;
                     height: 10px;
                     background: crimson;
                 }
 
-                .small {width: 10%;}
-                .medium {width: 25%;}
-                .large {width: 40%;}
-                .x-large {width: 60%;}
+                .small:before {width: 10%;}
+                .medium:before {width: 25%;}
+                .large:before {width: 40%;}
+                .x-large:before {width: 60%;}
             `}
             </style>
         </Template>
@@ -266,23 +305,23 @@ render() {
             <div>
                 <p> You can alter the breakpoint to display desktop view on mobile and vice-versa. </p>
             </div>
+            
+            <style>
+            {`
+                @media screen and (max-width: ${breakpointMobile}) {
+                    // mobile styling
+                }
+
+                @media screen and (min width: ${breakpointDesktop}) {
+                    // desktop styling
+                }
+            `}
+            </style>
         </Template>
-
-        <style>
-        {`
-            @media screen and (max-width: ${breakpointMobile}) {
-                // mobile styling
-            }
-
-            @media screen and (min width: ${breakpointDesktop}) {
-                // desktop styling
-            }
-        `}
-        </style>
     )
 } 
 ```
 
-<p> For additional suport, follow me on <a href='https://twitter.com/onepetercollins' target='_blank'>twitter</a> @onepetercollins. You can share your ideas and cool projects, I'd love to see them. </p>
+<p> For additional support, follow me on <a href='https://twitter.com/onepetercollins' target='_blank'>twitter</a> @onepetercollins or <a href='https://github.com/onepetercollins'>github</a>. You can share your ideas and cool projects, I'd love to see them. </p>
 
 <p> I will also appreciate your donations towards the maintenance of this package. </p>
