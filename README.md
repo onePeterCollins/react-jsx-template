@@ -7,7 +7,7 @@
 
 <p> If you're a Vue.js developer transitioning to React.js you will love this powerful yet simple component. It works like the &lt;template&gt; tag in Vue.js, but in this case you write both your markup and stylesheet inside it.</p>
 
-<p>You might want to read more about how this component achieves encapsulation, or move on you're fine without this paragraph. `react-jsx-template` works with the <a href='https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM' target='_blank'>Shadow DOM API</a> and essentially renders the content of your component within the Shadow DOM of a 'root' element. Ok that's enough, proceed to see how all this might be useful to you.</p>
+<p>You might want to read more about how this component achieves encapsulation, or move on you're fine without this paragraph. 'react-jsx-template' works with the <a href='https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM' target='_blank'>Shadow DOM API</a> and essentially renders the content of your component within the Shadow DOM of a 'root' element. Ok that's enough talk, proceed to see how all this might be useful to you.</p>
 
 
 # installation
@@ -40,13 +40,27 @@ npm install react-jsx-template
 
 # Usage
 
+<h4>Quick links</h4>
+<a href='#rjt-markup-structure'>Structuring your markup</a>
+<a href='#rjt-custom-setup'>Custom setup</a>
+<a href='#rjt-root-styling'>Styling the root element</a>
+<a href='#rjt-variable-selectors'>Variable CSS selectors</a>
+<a href='#rjt-variable-properties'>Variable CSS properties</a>
+<a href='#rjt-variable-values'>Variable CSS values</a>
+<a href='#rjt-variable-properties'>Variable CSS properties</a>
+<a href='#rjt-pseudo-styling'>Dynamic pseudo-element styling</a>
+<a href='#rjt-dynamic-media-queries'>Dynamic media queries</a>
+
+
 <p>Now we're all setup, to use the 'react-jsx-template' import it at the top of your script.</p>
 
 ```js
 import {Template} from 'react-jsx-template'
 ```
 
-<p>Then you can use it in the render function of your component by structuring it this way;</p>
+<h4 id='rjt-markup-structure'>Structuring your markup</h4>
+
+<p>You can then use it in the render function of your component by structuring it this way;</p>
 
 ```js
 // component showing how to structure your markup
@@ -77,6 +91,7 @@ render() {
 ```
 
 <p>Essentially, our &lt;template&gt; should contain 2 child elements;</p>
+
 *   <span>The root element, where we write our markup. </span>
 *   <span>A &lt;style&gt; element to contain our CSS rules. </span>
 
@@ -104,13 +119,17 @@ render() {
 
 <p> The &lt;Template&gt; tag does not get mounted to the DOM, so if you check your dev tools you won't see it. However, the root element gets mounted to the DOM and contains all the other elements of our component.</p>
 
+
+
+<h4 id='rjt-custom-setup'>Custom setup</h4>
+
 <p> You can use material-ui styled components by default, the inline styles will be preserved. To use a different component library, you need to setup a custom 'StylesProvider' the setup is explained below. </p>
 
-<p> Create a template.js file in your working directory, and write the following code in it; 
+<p> Create a template.js file in your './src' directory, and write the following code in it; 
 
 ```js
 // template.js
-import {StylesProvider} from // 'location of user defined styles provider'
+import {StylesProvider} from 'location of user defined styles provider'
 import {initializeTemplate} from 'react-jsx-template'
 
 const Template = initializeTemplate(StylesProvider)
@@ -157,7 +176,10 @@ render() {
 }
 ```
 
-<p> Styling the root element of your component can be done using the `:host` selector. This is because encapsulation is done using the shadow DOM API under the hood. You don't need prior knowledge of that to use this component, but you can check that out later if you want.</p>
+
+<h4 id='rjt-root-styling'>Styling the root element</h4>
+
+<p> Styling the root element of your component can be done using the ':host' selector. This is because encapsulation is done using the shadow DOM API under the hood. You don't need prior knowledge of that to use this component, but you can check that out later if you want.</p>
 
 ```javascript
 // styling the root element
@@ -177,6 +199,8 @@ render() {
     )
 }
 ```
+
+<h4 id='rjt-variable-selectors'>Variable CSS selectors</h4>
 
 <p>We have our CSS inside our JS file, and this allows us to play around with the CSS, using javascript variables as CSS selectors in our component styling, take a look;</p>
 
@@ -208,6 +232,8 @@ render() {
 }
 ```
 
+<h4 id='rjt-variable-properties'>Variable CSS properties</h4>
+
 <p>We can also use this concept to implement dynamic CSS properties in our component styles</p>
 
  ```javascript
@@ -232,6 +258,8 @@ render() {
 }
 ```
 
+<h4 id='rjt-variable-values'>Variable CSS values</h4>
+
 <p>With the same technique, we can have dynamic CSS values in our component styles</p>
 
  ```javascript
@@ -255,6 +283,8 @@ render() {
     )
 }
 ```
+
+<h4 id='rjt-pseudo-styling'>Dynamic pseudo-element styling</h4>
 
 <p>This makes controlling the CSS styles of pseudo-elements a breeze, see an example;</p>
 
@@ -290,6 +320,7 @@ render() {
     )
 } 
 ```
+<h4 id='rjt-dynamic-media-queries'>Dynamic media queries</h4>
 
 <p>We can also experiment with dynamic media queries, see an example;</p>
 
@@ -324,4 +355,4 @@ render() {
 
 <p> For additional support, follow me on <a href='https://twitter.com/onepetercollins' target='_blank'>twitter</a> @onepetercollins or <a href='https://github.com/onepetercollins'>github</a>. You can share your ideas and cool projects, I'd love to see them. </p>
 
-<p> I will also appreciate your donations towards the maintenance of this package. </p>
+<p> If you made it this far, this component is useful to you. I will appreciate your donations towards the maintenance of this package. <a href='mailto: onepetercollins@gmail.com' target='_blank'>Email me</a></p>
